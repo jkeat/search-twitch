@@ -1,0 +1,10 @@
+<h2>Results</h2>
+<ul>
+	{{#each model.streams as |stream|}}
+		<li>{{ stream.game }}</li> <!-- this should later be a component, pass it the stream obj -->
+	{{else}}
+		<li>no results</li>
+	{{/each}}
+</ul>
+
+<!-- TODO: pagination. check if ([page+1]*10 < total) to show button. Otherwise, linkto page++ -->
