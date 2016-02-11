@@ -1,4 +1,9 @@
 <h2>Results</h2>
+
+{{total-results totalStreams=model._total}}
+
+{{simple-pagination currentPage=model.current_page numPages=(calculate-total-pages model._total) changePage=(action "changePage")}}
+
 <ul>
 	{{#each model.streams as |stream|}}
 		<li>{{ stream.game }}</li> <!-- this should later be a component, pass it the stream obj -->
@@ -6,5 +11,6 @@
 		<li>no results</li>
 	{{/each}}
 </ul>
+
 
 <!-- TODO: pagination. check if ([page+1]*10 < total) to show button. Otherwise, linkto page++ -->

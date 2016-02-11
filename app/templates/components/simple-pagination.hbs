@@ -1,0 +1,3 @@
+<button {{action "sendChangePageAction" 1}} disabled={{paginator-button-disable-check currentPage numPages 1}}> forwrd </button>
+<div>page {{currentPage}}/{{numPages}}</div>
+<button {{action "sendChangePageAction" -1}} disabled={{paginator-button-disable-check currentPage numPages -1}}> bkwrd </button>

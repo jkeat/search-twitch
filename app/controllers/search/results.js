@@ -10,4 +10,13 @@ export default Ember.Controller.extend({
 	 */
 	q: null,
 	page: 1,
+
+	actions: {
+		changePage(numPages) {
+			this.transitionToRoute("search.results", { queryParams: {
+				page: this.get('page') + numPages,
+				q: this.get('q')
+			}});
+		}
+	}
 });

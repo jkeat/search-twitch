@@ -53,6 +53,7 @@ export default Ember.Route.extend({
 				"limit": STREAMS_PER_PAGE,
 			},
 			success: function(data, text) {
+				data["current_page"] = page;
 				return data;
 			},
 			error: function(request, status, error) {
