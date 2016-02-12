@@ -1,16 +1,19 @@
-<h2>Results</h2>
+<div class="search-results-container">
+	{{#if model.streams}}
+		{{total-results totalResults=model._total}}
+	{{/if}}
 
-{{total-results totalStreams=model._total}}
+	{{#if (more-than-one-page model._total) }}
+		{{simple-pagination class="simple-pagination-top-right" currentPage=model.current_page numPages=(calculate-total-pages model._total) changePage=(action "changePage")}}
+	{{/if}}
 
-{{simple-pagination currentPage=model.current_page numPages=(calculate-total-pages model._total) changePage=(action "changePage")}}
-
-<ul>
 	{{#each model.streams as |stream|}}
-		<li>{{ stream.game }}</li> <!-- this should later be a component, pass it the stream obj -->
+		{{stream-listing stream=stream}}
 	{{else}}
-		<li>no results</li>
+		<h4>No streams found!</h4>
 	{{/each}}
-</ul>
 
-
-<!-- TODO: pagination. check if ([page+1]*10 < total) to show button. Otherwise, linkto page++ -->
+	{{#if (more-than-one-page model._total) }}
+		{{simple-pagination class="simple-pagination-bottom-right" currentPage=model.current_page numPages=(calculate-total-pages model._total) changePage=(action "changePage")}}
+	{{/if}}
+</div>

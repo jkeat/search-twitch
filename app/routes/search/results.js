@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import config from '../../config/environment';
 
 export default Ember.Route.extend({
 	/**
@@ -30,7 +31,7 @@ export default Ember.Route.extend({
 	 * Load it so the stream-list controller and template have access
 	 */
 	model(params) { // TODO: Make sep. function... But where?
-		var STREAMS_PER_PAGE = 10; // TODO: make app variable
+		var STREAMS_PER_PAGE = config.APP.STREAMS_PER_PAGE; // TODO: make app variable
 		var query = params["q"];
 		var page = params["page"];
 
@@ -53,12 +54,39 @@ export default Ember.Route.extend({
 				"limit": STREAMS_PER_PAGE,
 			},
 			success: function(data, text) {
+				/**
+				 * Attaching these through here because afterModel hasn't fully
+				 * implemented query parameter access yet.
+				 * https://github.com/emberjs/ember.js/issues/12169
+				 **/
 				data["current_page"] = page;
+				data["twitch_query"] = query;
 				return data;
 			},
 			error: function(request, status, error) {
 				console.log(error);
 			}
 		});
+	},
+	afterModel(model, transition) {
+		/**
+		 * Send user back to last page if they've gone past it
+		 * (Happens often because the # of streams frequently changes)
+		 *
+		 * This works, but there's an Ember bug (I _think_?) that throws an error.
+		 * Bug discussed here: https://github.com/emberjs/ember.js/issues/12169
+		 * Shouldn't have used Ember 2.3 ...
+		 */
+		let lastPage = Math.ceil(model["_total"]/config.APP.STREAMS_PER_PAGE), // TODO!
+		    curPage = model["current_page"],
+		    query = model["twitch_query"];
+		if (curPage > lastPage && lastPage != 0) {
+			console.log("If an error occurred, it is discussed here: https://github.com/emberjs/ember.js/issues/12169");
+			this.transitionTo('search.results', { queryParams: {
+				page: lastPage,
+				q: query
+			}});
+		}
 	}
+
 });

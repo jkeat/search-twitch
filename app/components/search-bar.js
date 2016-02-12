@@ -4,6 +4,8 @@ export default Ember.Component.extend({
 	tagName: 'form',
 	submit: function(e) {
 		e.preventDefault();
-		this.get('onSubmit')(this.searchTerms);
+		if (this.searchTerms != "") {
+			this.get('onSubmit')(this.searchTerms);
+		}
 	}
 });

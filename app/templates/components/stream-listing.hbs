@@ -1,0 +1,12 @@
+<div class="stream-listing">
+	<a href="{{stream.channel.url}}" target="_blank">
+		<div class="stream-image"><img src="{{stream.preview.medium}}"></div>
+	</a>
+	<div class="stream-info">
+		<a href="{{stream.channel.url}}" target="_blank">
+			<div class="stream-name">{{stream.channel.status}}</div>
+		</a>
+		<div class="stream-summary"><a href="{{link-to-profile stream.channel.url}}" target="_blank">{{stream.channel.display_name}}</a> playing {{#link-to 'search.results' (query-params q=stream.game)}}{{stream.game}}{{/link-to}}</div>
+		<div class="stream-viewers">{{stream.viewers}} viewer{{pluralize stream.viewers}}</div>
+	</div>
+</div>
