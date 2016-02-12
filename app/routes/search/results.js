@@ -55,9 +55,12 @@ export default Ember.Route.extend({
 			},
 			success: function(data, text) {
 				/**
-				 * Attaching these through here because afterModel hasn't fully
+				 * Attaching these here for afterModel to use,
+				 * because afterModel hasn't fully
 				 * implemented query parameter access yet.
 				 * https://github.com/emberjs/ember.js/issues/12169
+				 *
+				 * These are also used in the results templates.
 				 **/
 				data["current_page"] = page;
 				data["twitch_query"] = query;
