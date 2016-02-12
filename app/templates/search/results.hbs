@@ -10,7 +10,7 @@
 	{{#each model.streams as |stream|}}
 		{{stream-listing stream=stream}}
 	{{else}}
-		<h4>No streams found!</h4>
+		<h4>No streams found matching "{{model.twitch_query}}"</h4>
 	{{/each}}
 
 	{{#if (more-than-one-page model._total) }}

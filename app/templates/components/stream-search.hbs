@@ -1,4 +1,4 @@
 <div class="stream-search-header">
-	<h1 class="page-title">Search Twitch</h1>
+	{{#link-to 'search' class="page-title"}}Search Twitch{{/link-to}}
 	{{search-bar class="search-bar" buttonText="Search" onSubmit=(action "sendSearchAction")}}
 </div>

@@ -15,13 +15,19 @@ input[type="text"]:focus {
 
 .page-title {
 	display: inline-block;
-    font-size: 2.5em;
-    line-height: 1em;
+    font-size: 1.6em;
+    line-height: 39px;
     margin: 0;
+    font-family: "Press Start 2P", monospace;
+    color: #8978A9;
+}
+.page-title:hover {
+	text-decoration: none;
+	color: #6441A5;
 }
 
 .stream-search-header {
-	padding: 70px 0 30px;
+	padding: 40px 0 30px;
 }
 .stream-search-header > * {
 	display: inline-block;
@@ -37,7 +43,7 @@ input[type="text"]:focus {
 		width: 200px;
 	}
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 810px) {
 	.stream-search-header {
 		padding-bottom: 80px;
 	}

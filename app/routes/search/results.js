@@ -30,8 +30,8 @@ export default Ember.Route.extend({
 	 * Get appropriate stream data via Twitch.tv API, based on the 'page' and 'query' parameters
 	 * Load it so the stream-list controller and template have access
 	 */
-	model(params) { // TODO: Make sep. function... But where?
-		var STREAMS_PER_PAGE = config.APP.STREAMS_PER_PAGE; // TODO: make app variable
+	model(params) {
+		var STREAMS_PER_PAGE = config.APP.STREAMS_PER_PAGE;
 		var query = params["q"];
 		var page = params["page"];
 
